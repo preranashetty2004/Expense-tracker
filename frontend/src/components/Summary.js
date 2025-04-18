@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Summary = () => {
+const Summary = ({ budget, remaining, totalSpent, onSetBudget }) => {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSetBudget(input);
+    setInput('');
+  };
+
   return (
     <div className="summary">
-      <h3>Your Balance: ₹1000</h3>
-      <div className="summary-box">
-        <div className="income">
-          <h4>Income</h4>
-          <p className="plus">+₹2000</p>
-        </div>
-        <div className="expense">
-          <h4>Expense</h4>
-          <p className="minus">-₹1000</p>
-        </div>
+      <h2>Budget Overview</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="number"
+          placeholder="Set your budget (e.g., ₹10000)"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button type="submit">Set Budget</button>
+      </form>
+
+      <div className="budget-info">
+        <p><strong>Total Budget:</strong> ₹{budget}</p>
+        <p><strong>Total Spent:</strong> ₹{totalSpent}</p>
+        <p><strong>Remaining:</strong> ₹{remaining}</p>
       </div>
     </div>
   );

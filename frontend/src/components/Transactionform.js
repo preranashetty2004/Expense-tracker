@@ -6,7 +6,6 @@ const TransactionForm = ({ onAddTransaction }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!text || !amount) return;
 
     const newTransaction = {
@@ -26,18 +25,18 @@ const TransactionForm = ({ onAddTransaction }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Text</label>
-          <input 
-            type="text" 
-            placeholder="Enter description..." 
+          <input
+            type="text"
+            placeholder="Enter description..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
         </div>
         <div>
           <label>Amount (negative = expense, positive = income)</label>
-          <input 
-            type="number" 
-            placeholder="Enter amount..." 
+          <input
+            type="number"
+            placeholder="Enter amount..."
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
